@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembayaran QRIS</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .payment-info {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .payment-info p {
+            margin: 5px 0;
+        }
+
+        .qr-code {
+            margin-bottom: 20px;
+        }
+
+        .qr-code img {
+            max-width: 200px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+            background-color: #fff;
+        }
+
+        .instructions {
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .status {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9ecef;
+            border-radius: 4px;
+        }
+
+        .status p {
+            margin: 0;
+        }
+
+        #payment-status {
+            font-weight: bold;
+            color: #28a745; /* Warna hijau untuk status berhasil */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pembayaran dengan QRIS</h1>
+        <div class="payment-info">
+            <p>Total Pembayaran: Rp <span id="amount">0</span></p>
+            <p>Deskripsi: <span id="description"></span></p>
+        </div>
+
+        <div class="qr-code">
+            <img src="qris.png" alt="QRIS Code" id="qrcode-image">
+        </div>
+
+        <p class="instructions">
+            Scan QR Code di atas menggunakan aplikasi pembayaran yang mendukung QRIS.
+        </p>
+
+        <div class="status">
+            <p>Status Pembayaran: <span id="payment-status">Menunggu Pembayaran</span></p>
+        </div>
+    </div>
+
+    <script>
+        // Simulasi data pembayaran (ganti dengan data dari backend Anda)
+        const paymentData = {
+            amount: 50000,
+            description: "Pembelian Produk A",
+            qrCodeImage: "qris.png", // Ganti dengan URL gambar QRIS Anda
+            paymentStatus: "pending" // pending, success, failed
+        };
+
+        // Update tampilan dengan data pembayaran
+        document.getElementById("amount").innerText = paymentData.amount.toLocaleString('id-ID');
+        document.getElementById("description").innerText = paymentData.description;
+        document.getElementById("qrcode-image").src = paymentData.qrCodeImage;
+
+        // Fungsi untuk update status pembayaran (simulasi)
+        function updatePaymentStatus(status) {
+            document.getElementById("payment-status").innerText = status;
+        }
+
+        // Simulasi perubahan status pembayaran setelah beberapa detik
+        setTimeout(() => {
+            updatePaymentStatus("Pembayaran Berhasil");
+        }, 5000); // Setelah 5 detik
+    </script>
+</body>
+</html>
